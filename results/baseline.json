@@ -1,0 +1,803 @@
+{
+  "run_id": "demo-baseline",
+  "provider": "replay",
+  "model": "demo-judge",
+  "dataset": "support_audit",
+  "created_at": "2026-11-12T10:40:54+00:00",
+  "n_calls": 60,
+  "overall_accuracy": 0.95,
+  "rules": [
+    {
+      "rule_id": "sla_first_response",
+      "n": 20,
+      "accuracy": 0.95,
+      "fail_precision": 1.0,
+      "fail_recall": 0.8,
+      "confusion": {
+        "tp": 4,
+        "fp": 0,
+        "fn": 1,
+        "tn": 15
+      },
+      "errors": 0
+    },
+    {
+      "rule_id": "no_pii_in_public_reply",
+      "n": 20,
+      "accuracy": 0.95,
+      "fail_precision": 1.0,
+      "fail_recall": 0.75,
+      "confusion": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 1,
+        "tn": 16
+      },
+      "errors": 0
+    },
+    {
+      "rule_id": "troubleshooting_quality",
+      "n": 20,
+      "accuracy": 0.95,
+      "fail_precision": 0.8571,
+      "fail_recall": 1.0,
+      "confusion": {
+        "tp": 6,
+        "fp": 1,
+        "fn": 0,
+        "tn": 13
+      },
+      "errors": 0
+    }
+  ],
+  "disagreements": [
+    {
+      "case_id": "case-07",
+      "rule_id": "no_pii_in_public_reply",
+      "expected": "fail",
+      "got": "pass",
+      "reason": "The API key in the reply belongs to the customer's own account and was issued to them, so no other party's data is exposed."
+    },
+    {
+      "case_id": "case-10",
+      "rule_id": "sla_first_response",
+      "expected": "fail",
+      "got": "pass",
+      "reason": "An acknowledgement was sent one minute after opening, well inside the 480-minute SLA."
+    },
+    {
+      "case_id": "case-14",
+      "rule_id": "troubleshooting_quality",
+      "expected": "pass",
+      "got": "fail",
+      "reason": "The engineer tested the setting on a demo tenant, but the customer never confirmed the change worked for them."
+    }
+  ],
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "estimated_cost_usd": null,
+  "p50_latency_ms": 0,
+  "p95_latency_ms": 0,
+  "predictions": [
+    {
+      "case_id": "case-01",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-01",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P2 SLA is 120 minutes; first response at 2026-10-05T16:45 after opening at 2026-10-05T16:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-01",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (requested client log) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-02",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-02",
+      "rule_id": "sla_first_response",
+      "verdict": "fail",
+      "reason": "P1 SLA is 30 minutes; first response at 2026-10-05T23:52 after opening at 2026-10-05T23:00 is outside it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-02",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (requested commit ID) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-03",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "fail",
+      "reason": "A public reply exposes sensitive data in plain text.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-03",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P3 SLA is 480 minutes; first response at 2026-10-06T09:20 after opening at 2026-10-06T06:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-03",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (checked role assignments) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-04",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-04",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P3 SLA is 480 minutes; first response at 2026-10-06T15:00 after opening at 2026-10-06T13:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-04",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "fail",
+      "reason": "The ticket was closed without diagnostic evidence or verification of the fix.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-05",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-05",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P4 SLA is 1440 minutes; first response at 2026-10-07T06:00 after opening at 2026-10-06T20:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-05",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (requested report name and date) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-06",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-06",
+      "rule_id": "sla_first_response",
+      "verdict": "fail",
+      "reason": "P2 SLA is 120 minutes; first response at 2026-10-07T06:10 after opening at 2026-10-07T03:00 is outside it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-06",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "fail",
+      "reason": "The ticket was closed without diagnostic evidence or verification of the fix.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-07",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "The API key in the reply belongs to the customer's own account and was issued to them, so no other party's data is exposed.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-07",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P2 SLA is 120 minutes; first response at 2026-10-07T10:30 after opening at 2026-10-07T10:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-07",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (searched API gateway logs for the account) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-08",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-08",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P1 SLA is 30 minutes; first response at 2026-10-07T17:18 after opening at 2026-10-07T17:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-08",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (collected HA state output from both nodes) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-09",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-09",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P4 SLA is 1440 minutes; first response at 2026-10-08T21:40 after opening at 2026-10-08T00:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-09",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "fail",
+      "reason": "The ticket was closed without diagnostic evidence or verification of the fix.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-10",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-10",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "An acknowledgement was sent one minute after opening, well inside the 480-minute SLA.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-10",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (looked up error -2003 in the error catalogue) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-11",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-11",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P2 SLA is 120 minutes; first response at 2026-10-08T15:40 after opening at 2026-10-08T14:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-11",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (checked payment gateway records) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-12",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "fail",
+      "reason": "A public reply exposes sensitive data in plain text.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-12",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P3 SLA is 480 minutes; first response at 2026-10-09T02:00 after opening at 2026-10-08T21:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-12",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "fail",
+      "reason": "The ticket was closed without diagnostic evidence or verification of the fix.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-13",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-13",
+      "rule_id": "sla_first_response",
+      "verdict": "fail",
+      "reason": "P1 SLA is 30 minutes; first response at 2026-10-09T05:15 after opening at 2026-10-09T04:00 is outside it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-13",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "fail",
+      "reason": "The ticket was closed without diagnostic evidence or verification of the fix.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-14",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-14",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P4 SLA is 1440 minutes; first response at 2026-10-10T02:00 after opening at 2026-10-09T11:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-14",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "fail",
+      "reason": "The engineer tested the setting on a demo tenant, but the customer never confirmed the change worked for them.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-15",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "fail",
+      "reason": "A public reply exposes sensitive data in plain text.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-15",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P2 SLA is 120 minutes; first response at 2026-10-09T19:00 after opening at 2026-10-09T18:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-15",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (collected forwarder logs) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-16",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-16",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P3 SLA is 480 minutes; first response at 2026-10-10T05:00 after opening at 2026-10-10T01:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-16",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (collected agentctl status output) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-17",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-17",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P2 SLA is 120 minutes; first response at 2026-10-10T09:50 after opening at 2026-10-10T08:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-17",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "fail",
+      "reason": "The ticket was closed without diagnostic evidence or verification of the fix.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-18",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-18",
+      "rule_id": "sla_first_response",
+      "verdict": "fail",
+      "reason": "P4 SLA is 1440 minutes; first response at 2026-10-11T16:00 after opening at 2026-10-10T15:00 is outside it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-18",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (checked /v2/events reference page) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-19",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-19",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P1 SLA is 30 minutes; first response at 2026-10-10T22:25 after opening at 2026-10-10T22:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-19",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (collected tech-support file) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-20",
+      "rule_id": "no_pii_in_public_reply",
+      "verdict": "pass",
+      "reason": "Public replies contain no other customer's contact details, full card numbers or unmasked secrets.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-20",
+      "rule_id": "sla_first_response",
+      "verdict": "pass",
+      "reason": "P3 SLA is 480 minutes; first response at 2026-10-11T12:50 after opening at 2026-10-11T05:00 is within it.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    {
+      "case_id": "case-20",
+      "rule_id": "troubleshooting_quality",
+      "verdict": "pass",
+      "reason": "The engineer collected evidence (checked account billing address) and the fix was verified.",
+      "error": null,
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    }
+  ]
+}

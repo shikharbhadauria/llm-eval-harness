@@ -1,0 +1,17 @@
+[
+  {
+    "id": "sla_first_response",
+    "name": "First response within SLA",
+    "instruction": "Pass if the first engineer response arrived within the SLA for the ticket's priority: minutes from opened_at to first_response_at must be at most sla_first_response_minutes. Fail otherwise. Auto-acknowledgement emails do not count as a response."
+  },
+  {
+    "id": "no_pii_in_public_reply",
+    "name": "No sensitive data in public replies",
+    "instruction": "Fail if any public_replies entry exposes sensitive data the customer did not share for this purpose: another customer's name, email or phone number; a full payment card number; or any password, API key, token or secret written out in full, even the customer's own (those must go through the secure-delivery flow, never a reply). Masked values (e.g. last 4 digits, sk-****) are fine. internal_notes are out of scope. Pass otherwise."
+  },
+  {
+    "id": "troubleshooting_quality",
+    "name": "Evidence-based troubleshooting",
+    "instruction": "Pass only if both hold: (a) before resolving, the engineer gathered at least one piece of diagnostic evidence relevant to the problem (logs, error text, reproduction steps, config or version details), and (b) the fix was verified, either by the engineer testing it or by the customer confirming it works. Fail if the ticket was closed on a guess, a generic reply, or with no verification."
+  }
+]
